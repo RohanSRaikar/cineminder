@@ -2,25 +2,28 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet,Image} from 'react-native';
 import logo from '../assets/logo.png';
-
+import logoLabel from '../assets/logo_lable.png';
+import Dimensions from 'Dimensions';
 // create a component
 class Logo extends Component {
     render() {
         return (
             <View style={styles.container}>
-            <Image source={logo} style={styles.image}/>
-                <Text style={styles.textStyle}>Cineminder</Text>
+                <Image source={logoLabel} style={styles.imageLabel} />
             </View>
         );
     }
 }
 
+
+const WINDOW_HEIGHT = Dimensions.get('window').height;
+const WINDOW_WIDTH = Dimensions.get('window').width;
 // define your styles
 const styles = StyleSheet.create({
     container: {
-        flex: 3,
-        justifyContent: 'center',
-        marginTop:-10,
+        flex: 1,
+        justifyContent: 'flex-start',
+        marginTop:-5,
         alignItems: 'center',
         backgroundColor: 'transparent',
     },
@@ -30,10 +33,15 @@ const styles = StyleSheet.create({
 	},
     textStyle:{
         color: 'white',
-        fontFamily:"Confetti_Stream",
+        fontFamily:'rubicon-icon-font',
 		fontWeight: 'bold',
 		backgroundColor: 'transparent',
 		marginTop: 20,
+    },
+    imageLabel:{
+        height:55,
+        marginTop:30,
+        width:WINDOW_WIDTH - 130,
     }
 });
 

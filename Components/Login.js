@@ -1,12 +1,11 @@
 //import liraries
 import React, { Component } from 'react';
-import {View, Text, StyleSheet } from 'react-native';
+import {View, Text, StyleSheet,TouchableOpacity } from 'react-native';
 import Wallpaper from './Wallpaper';
 import {Toolbar,Container} from 'native-base';
-import LoginForm from './LoginForm';
 import Logo from './Logo';
-import SignUpSection from './SignupSection';
 import {SocialIcon} from 'react-native-elements';
+import WelcomeMsg from './WelcomeMsg';
 
 
 
@@ -19,12 +18,13 @@ class Login extends Component {
             <Container>
                 <Wallpaper>
                     <Logo/>
-                    <LoginForm/>
+                    <WelcomeMsg/>
+                    <View style={styles.FBMsgBorder}><Text style={styles.FBMsg}>Login with facebook to browse through your favorite movies</Text></View>
                     <SocialIcon title='SignIn With Facebook'
                         button type='facebook'/>
-                    <SocialIcon title='SignIn With Google'
-                        button style={styles.google}/>
-                    <SignUpSection/>
+                    <TouchableOpacity style={styles.skipLogin}>
+                        <Text style={styles.textStyle}>Skip Login</Text>
+                    </TouchableOpacity>
                 </Wallpaper>
             </Container>
         );
@@ -41,6 +41,25 @@ const styles = StyleSheet.create({
     },
     google:{
         backgroundColor:'#EF5350',
+    },
+    skipLogin:{
+        justifyContent:'center',
+        alignItems:'center',
+        padding:10,
+    },
+    textStyle:{
+        color:'white',
+        margin:10,
+    },
+    FBMsg:{
+        color:'white',
+        textAlign:'center',
+        fontSize: 15,
+        margin:5,
+    },
+    FBMsgBorder:{
+        borderColor:rgb(59, 89, 152),
+        borderRadius:10,
     }
 });
 
