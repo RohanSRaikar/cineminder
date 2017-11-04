@@ -16,12 +16,14 @@ class WelcomeMsg extends Component {
 // define your styles
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flex: 4,
         justifyContent: 'center',      
     },
     TextStyle:{
-        fontSize: 20,
-        color:'white',
+        fontSize: 18,
+        padding:10,
+        color:'#BDBDBD',
+        fontFamily:'roboto',
         textAlign: 'center', 
     }
 });

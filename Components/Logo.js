@@ -39,9 +39,9 @@ const styles = StyleSheet.create({
 		marginTop: 20,
     },
     imageLabel:{
-        height:55,
-        marginTop:30,
-        width:WINDOW_WIDTH - 130,
+        height:50,
+        marginTop:20,
+        width:WINDOW_WIDTH - 200,
     }
 });
 

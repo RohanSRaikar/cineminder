@@ -52,14 +52,17 @@ const styles = StyleSheet.create({
         margin:10,
     },
     FBMsg:{
-        color:'white',
+        color:'#BDBDBD',
         textAlign:'center',
-        fontSize: 15,
+        fontSize: 12,
         margin:5,
     },
     FBMsgBorder:{
-        borderColor:rgb(59, 89, 152),
-        borderRadius:10,
+        borderColor:'#BDBDBD',
+        borderRadius:4,
+        borderWidth:1,
+        marginRight:20,
+        marginLeft:20
     }
 });
 
