@@ -11,15 +11,21 @@ import {
   Text,
   View
 } from 'react-native';
-import Login from './Components/Login';
+import {registerScreens} from './_global/screens';
+import PropTypes from 'prop-types';
+import {Navigation} from 'react-native-navigation';
 
 
-export default class App extends Component<{}> {
-  render() {
-    return (
-        <Login/>
-    );
+registerScreens();
+
+const navigatorStyle = {
+  navBarHidden:true,
+  navBarTransparent: true,
+};
+
+Navigation.startSingleScreenApp({
+  screen:{
+    screen:'MainScreen',
+    navigatorStyle
   }
-}
-
-
+});

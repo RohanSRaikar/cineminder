@@ -4,6 +4,7 @@ import {View, Text, StyleSheet,TouchableOpacity } from 'react-native';
 import Wallpaper from './Wallpaper';
 import {Toolbar,Container} from 'native-base';
 import Logo from './Logo';
+import {Navigation} from 'react-native-navigation';
 import {SocialIcon} from 'react-native-elements';
 import WelcomeMsg from './WelcomeMsg';
 
@@ -13,6 +14,14 @@ import WelcomeMsg from './WelcomeMsg';
 
 // create a component
 class Login extends Component {
+    constructor(props){
+        super(props)
+        this.goToHome=this.goToHome.bind(this);
+    }
+
+    goToHome(){
+       this.props.navigator.push('HomeScreen');
+    }
     render() {
         return ( 
             <Container>
@@ -22,7 +31,7 @@ class Login extends Component {
                     <View style={styles.FBMsgBorder}><Text style={styles.FBMsg}>Login with facebook to browse through your favorite movies</Text></View>
                     <SocialIcon title='SignIn With Facebook'
                         button type='facebook'/>
-                    <TouchableOpacity style={styles.skipLogin}>
+                    <TouchableOpacity style={styles.skipLogin} onPress={this.goToHome}>
                         <Text style={styles.textStyle}>Skip Login</Text>
                     </TouchableOpacity>
                 </Wallpaper>
