@@ -11,7 +11,9 @@ import {
   Text,
   View
 } from 'react-native';
-import {registerScreens} from './_global/screens';
+import {registerScreens} from './Components/_global/screens';
+import {Provider} from 'react-redux';
+import configureStore from './store/configure-store';
 import PropTypes from 'prop-types';
 import {Navigation} from 'react-native-navigation';
 
@@ -26,6 +28,6 @@ const navigatorStyle = {
 Navigation.startSingleScreenApp({
   screen:{
     screen:'MainScreen',
-    navigatorStyle
+    navigatorStyle,  
   }
 });

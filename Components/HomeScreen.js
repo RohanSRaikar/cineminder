@@ -1,14 +1,54 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet,ScrollView } from 'react-native';
+import Swiper from 'react-native-swiper';
+import BannerCard from './ViewCards/BannerCard';
+import * as moviesAction from './actions/movies.action';
+import {bindActionCreators} from 'redux';
+import { connect } from 'react-redux';
 
 // create a component
 class HomeScreen extends Component {
+    constructor(props){
+        super(props);
+        this.state={
+            isLoading:true,
+            isRefreshing:false,
+        }
+    }
+    //Load Movies during Screen load
+    
+    componentWillMount() {
+        this._retriveMovies();
+    }
+    
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.nowPlayingMovies && nextProps.popularMovies){
+            this.setState({isLoading:false});
+        }   
+    }
+
+    //function to retrive movies 
+    _retriveMovies(isRefreshed){
+        if(isRefreshed && this.setState({isRefreshing:false}))
+            {
+                this.props.actions.retrieveNowpalyingMovies();
+                this.props.actions.retrievePopularMovies();
+            }
+    }
+
     render() {
+        const { nowPlayingMovies, popularMovies } = this.props;
         return (
-            <View style={styles.container}>
-                <Text>HomeScreen</Text>
-            </View>
+            <Swiper
+                autoplay
+                autoplayTimeout={4}
+                showsPagination={false}
+                height={248}>
+                {nowPlayingMovies.result.map(info => (
+                    <BannerCard key={info.id} info={info} />
+                ))}
+            </Swiper>
         );
     }
 }
@@ -23,5 +63,18 @@ const styles = StyleSheet.create({
     },
 });
 
-//make this component available to the app
-export default HomeScreen;
+function mapStateToProps(state,ownProps){
+    return{
+        nowPlayingMovies : state.movies.mowPlayingMovies
+    };
+}
+
+function mapDispatchToProps(dispatch){
+    return{
+        actions:bindActionCreators(moviesAction,dispatch)
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
+
+

@@ -4,13 +4,21 @@ import {View, Text, StyleSheet,TouchableOpacity } from 'react-native';
 import Wallpaper from './Wallpaper';
 import {Toolbar,Container} from 'native-base';
 import Logo from './Logo';
+import {PropTypes} from 'prop-types';
 import {Navigation} from 'react-native-navigation';
 import {SocialIcon} from 'react-native-elements';
 import WelcomeMsg from './WelcomeMsg';
 
 
 
-
+const navigatorStyle={
+    statusBarColor: 'black',
+	statusBarTextColorScheme: 'light',
+	navigationBarColor: 'black',
+	navBarBackgroundColor: '#9E9E9E',
+	navBarTextColor: 'white',
+	navBarButtonColor: 'white',
+}
 
 // create a component
 class Login extends Component {
@@ -20,7 +28,25 @@ class Login extends Component {
     }
 
     goToHome(){
-       this.props.navigator.push('HomeScreen');
+       Navigation.startSingleScreenApp({
+            screen:{
+            screen:'HomeScreen',
+            title:'Cine Hunt',
+            leftButtons:[
+                {
+                  id:'sideMenu'
+                }
+              ]
+            },
+              drawer:{
+                left:{
+                  screen:'Drawer'
+            }
+
+       }
+      }
+    )
+       
     }
     render() {
         return ( 
