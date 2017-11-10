@@ -39,15 +39,14 @@ class HomeScreen extends Component {
 
     render() {
         const { nowPlayingMovies, popularMovies } = this.props;
+        console.log("Nowplaying Value", nowPlayingMovies);
+        console.log("props",this.props);
         return (
-            <Swiper
+           <Swiper
                 autoplay
                 autoplayTimeout={4}
                 showsPagination={false}
                 height={248}>
-                {nowPlayingMovies.result.map(info => (
-                    <BannerCard key={info.id} info={info} />
-                ))}
             </Swiper>
         );
     }
@@ -65,7 +64,7 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state,ownProps){
     return{
-        nowPlayingMovies : state.movies.mowPlayingMovies
+        nowPlayingMovies : state.movies.nowPlayingMovies
     };
 }
 

@@ -13,12 +13,14 @@ import {
 } from 'react-native';
 import {registerScreens} from './Components/_global/screens';
 import {Provider} from 'react-redux';
-import configureStore from './store/configure-store';
+import configureStore from './Components/store/configure-store';
 import PropTypes from 'prop-types';
 import {Navigation} from 'react-native-navigation';
 
+const store=configureStore();
 
-registerScreens();
+
+registerScreens(store,Provider);
 
 const navigatorStyle = {
   navBarHidden:true,
