@@ -7,7 +7,7 @@ export function retrieveNowPlayingMovies(page){
     return function(dispatch){
         console.log("Dispatch :", dispatch);
         console.log("Page",page);
-        return axios.get(`http://api.themoviedb.org/4/movie/now_playing?api_key=163c193e3f58f163c783eb87f2b002b5&page=`)
+        return axios.get(`http://api.themoviedb.org/3/movie/now_playing?api_key=163c193e3f58f163c783eb87f2b002b5&page=`)
         .then(res => {
             console.log("Rohan : ",res);
             dispatch(retrieveNowPlayingMoviesSuccess(res));

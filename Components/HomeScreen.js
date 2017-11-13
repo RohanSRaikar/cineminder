@@ -5,6 +5,8 @@ import Swiper from 'react-native-swiper';
 import BannerCard from './ViewCards/BannerCard';
 import * as moviesAction from './actions/movies.action';
 import {bindActionCreators} from 'redux';
+import {PropTypes} from 'prop-types'; 
+import ProgressBar from './_global/ProgressBar';
 import { connect } from 'react-redux';
 
 // create a component
@@ -30,11 +32,11 @@ class HomeScreen extends Component {
 
     //function to retrive movies 
     _retriveMovies(isRefreshed){
-        if(isRefreshed && this.setState({isRefreshing:false}))
-            {
-                this.props.actions.retrieveNowpalyingMovies();
+       
+                this.props.actions.retrieveNowPlayingMovies();
                 this.props.actions.retrievePopularMovies();
-            }
+                if(isRefreshed && this.setState({isRefreshing:false}));
+        
     }
 
     render() {
@@ -42,15 +44,26 @@ class HomeScreen extends Component {
         console.log("Nowplaying Value", nowPlayingMovies);
         console.log("props",this.props);
         return (
+            this.state.isLoading ? <View style={styles.progressBar}><ProgressBar/></View> :
            <Swiper
                 autoplay
                 autoplayTimeout={4}
                 showsPagination={false}
                 height={248}>
+                {nowPlayingMovies.results.map(info => (
+                    <BannerCard key={info.id} info={info} />
+                ))}
+               
             </Swiper>
         );
     }
 }
+
+HomeScreen.propTypes = {
+	actions: PropTypes.object.isRequired,
+	nowPlayingMovies: PropTypes.object.isRequired,
+
+};
 
 // define your styles
 const styles = StyleSheet.create({
@@ -60,6 +73,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#2c3e50',
     },
+    progressBar: {
+		backgroundColor: '#0a0a0a',
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center'
+	},
 });
 
 function mapStateToProps(state,ownProps){
